@@ -56,33 +56,38 @@ class Graph:
         """
         que = Queue()
         que.enqueue(starting_vertex)
-        # print(que, "QUE")
-        # create set to keep track of visted verticies
+
+        # create list to keep track of visted verticies
         visited = []
 
         while len(que) > 0:
-            # print("in if")
             curr_vert = que.dequeue()
 
-            # print("visited :", visited)
             if curr_vert not in visited:
                 print(curr_vert)
-                # print("before add", curr_vert, visted)
                 visited.append(curr_vert)
-                # print(" after add", curr_vert, visted)
 
                 for neighbor in self.get_neighbors(curr_vert):
                     que.enqueue(neighbor)
-                    # print(neighbor, "neighbor")
-            # print("QUE: ", que)
-        return visited
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        dftStack = Stack()
+        dftStack.push(starting_vertex)
+
+        visited = []
+
+        while len(dftStack) > 0:
+            curr_vert = dftStack.pop()
+
+            if curr_vert not in visited:
+                print(curr_vert)
+                visited.append(curr_vert)
+                for neighbor in self.get_neighbors(curr_vert):
+                    dftStack.push(neighbor)
 
     def dft_recursive(self, starting_vertex):
         """
@@ -171,7 +176,7 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-    graph.dft(1)
+    print(graph.dft(1))
     graph.dft_recursive(1)
 
     '''
