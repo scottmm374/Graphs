@@ -4,6 +4,32 @@ Simple graph implementation
 from util import Stack, Queue  # These may come in handy
 
 
+# class Queue():
+#     def __init__(self):
+#         self.queue = []
+#         self.size = 0
+
+# def __str__(self):
+#     return f'{self.queue} : QUE'
+
+# def __len__(self):
+#     return len(self.queue)
+
+# def enqueue(self, value):
+#     self.queue.append(value)
+#     self.size += 1
+#     return value
+
+# def dequeue(self):
+#     if self.size >= 1:
+#         value = self.queue.pop(0)
+#         self.size -= 1
+#         return value
+
+#     else:
+#         return None
+
+
 class Graph:
 
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
@@ -28,7 +54,28 @@ class Graph:
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        que = Queue()
+        que.enqueue(starting_vertex)
+        # print(que, "QUE")
+        # create set to keep track of visted verticies
+        visited = []
+
+        while len(que) > 0:
+            # print("in if")
+            curr_vert = que.dequeue()
+
+            # print("visited :", visited)
+            if curr_vert not in visited:
+                print(curr_vert)
+                # print("before add", curr_vert, visted)
+                visited.append(curr_vert)
+                # print(" after add", curr_vert, visted)
+
+                for neighbor in self.get_neighbors(curr_vert):
+                    que.enqueue(neighbor)
+                    # print(neighbor, "neighbor")
+            # print("QUE: ", que)
+        return visited
 
     def dft(self, starting_vertex):
         """
@@ -70,7 +117,7 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        pass
 
 
 if __name__ == '__main__':
@@ -115,7 +162,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    graph.bft(1)
+    print(graph.bft(1))
 
     '''
     Valid DFT paths:
