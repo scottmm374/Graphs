@@ -3,7 +3,7 @@ Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
 
-
+# for testing in python preview
 # class Queue():
 #     def __init__(self):
 #         self.queue = []
@@ -95,14 +95,20 @@ class Graph:
 
  # ! <------------------------------------------------------>
 
-    def dft_recursive(self, starting_vertex):
+    def dft_recursive(self, starting_vertex, visited=set()):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
 
         This should be done using recursion.
         """
-        pass  # TODO
+
+        if starting_vertex in visited:
+            return
+        print(starting_vertex)
+        for neighbor in self.get_neighbors(starting_vertex):
+            visited.add(starting_vertex)
+            self.dft_recursive(neighbor, visited)
 
 
 # ! <------------------------------------------------------>
@@ -227,7 +233,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    # print(graph.bft(1))
+    print(graph.bft(1))
 
     '''
     Valid DFT paths:
@@ -236,7 +242,7 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-    # print(graph.dft(1))
+    print(graph.dft(1))
     graph.dft_recursive(1)
 
     '''
