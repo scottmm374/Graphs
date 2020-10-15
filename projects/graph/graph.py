@@ -104,7 +104,53 @@ class Graph:
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        pass  # TODO
+        # Create an empty queue and Add a PATH TO starting vertex
+
+        que = Queue()
+        # I.e add array [1] to the queue
+        path = []
+        que.enqueue(starting_vertex)
+        que.enqueue(path)
+        print(path, "path")
+        print(que, "que")
+        # create visited set (its empty for now)
+        visited = set()
+        # while queue is not empty:
+        curr_path = que.dequeue()
+        print(curr_path, "CP")
+        # while len(que) > 0:
+        #     # dequeue the current PATH from the queue
+        #     curr_path = que.dequeue()
+
+        #     # get the current vertex to analyze from the path
+        #     curr_vert = curr_path[-1]
+        #     # use the vertex at the END of the path array
+
+        #     # if vertex not visited:
+        #     if curr_vert not in visited:
+        #         # add vertex to visited list
+        #         visited.add(curr_vert)
+
+        #     # CHECK IF CURRENT VERTEX IS THE TARGET VERTEX
+        #         if curr_vert is destination_vertex:
+        #             # we found our vertex, and the path to it
+        #             return path
+        #             # return the PATH
+
+        #         else:
+        #             # for each neighbor of current vertex
+        #             if curr_vert not in visited:
+
+        #                 for neighbor in self.get_neighbors(curr_vert):
+        #                     # Add the path to that neighbor, to the queue
+        #                     path.append(neighbor)
+        #                     # COPY THE CURRENT PATH
+        #                     new_path = path
+        #                     # add neighbor to new path
+        #                     new_path.append(neighbor)
+        #                     # add the whole path to the Queue
+        #                     que.enqueue(new_path)
+        # print(que)
 
     def dfs(self, starting_vertex, destination_vertex):
         """
