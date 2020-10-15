@@ -107,59 +107,36 @@ class Graph:
 
 # ! <------------------------------------------------------>
 
-
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from
         starting_vertex to destination_vertex in
         breath-first order.
         """
-        # Create an empty queue and Add a PATH TO starting vertex
-
         path = Queue()
-        # I.e add array [1] to the queue
-
-        # que.enqueue(starting_vertex)
+        # creating empty path que with starting vertex
         path.enqueue([starting_vertex])
-        # print(path, "path")
-        print(path, "que")
-        # create visited set (its empty for now)
         visited = set()
-        # while queue is not empty:
-        # curr_path = que.dequeue()
-        # print(curr_path, "CP")
+
         while len(path) > 0:
             # dequeue the current PATH from the queue
             curr_path = path.dequeue()
-            print("Current_path, in while loop: \n", curr_path)
-            # get the current vertex to analyze from the path
+            # get the current vertex to analyze from the path, vertex at end of path list
             curr_vert = curr_path[-1]
-            # use the vertex at the END of the path array
-            print("Current_Vert, in while loop: \n", curr_vert)
-           # CHECK IF CURRENT VERTEX IS THE TARGET VERTEX
+
+           # CHECK IF CURRENT VERTEX IS THE TARGET VERTEX, if yes return path
             if curr_vert == destination_vertex:
-                # we found our vertex, and the path to it
-                print(curr_vert, "if found should be 6")
-                print(path, "found 6 print path")
                 return curr_path
-                # return the PATH
 
             if curr_vert not in visited:
                 # add vertex to visited list
                 visited.add(curr_vert)
-                print("Visted : \n", visited)
+
                 for neighbor in self.get_neighbors(curr_vert):
                     # Add the path to that neighbor, to the queue
-
                     path.enqueue(curr_path + [neighbor])
 
-                    print("new_path, after copying old path : \n", curr_path)
-
-            print("Que when done with while loop : \n", path)
-
-        # print(visited)
-        # print(path)
-        # print(que)
+            # print("Que when done with while loop : \n", path)
 
     # ! <------------------------------------------------------>
 
@@ -169,7 +146,28 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        path = Stack()
+        path.push([starting_vertex])
+
+        visited = set()
+
+        while len(path) > 0:
+            # dequeue the current PATH from the queue
+            curr_path = path.pop()
+            # get the current vertex to analyze from the path, vertex at end of path list
+            curr_vert = curr_path[-1]
+
+           # CHECK IF CURRENT VERTEX IS THE TARGET VERTEX, if yes return path
+            if curr_vert == destination_vertex:
+                return curr_path
+
+            if curr_vert not in visited:
+                # add vertex to visited list
+                visited.add(curr_vert)
+
+                for neighbor in self.get_neighbors(curr_vert):
+                    # Add the path to that neighbor, to the queue
+                    path.push(curr_path + [neighbor])
 
     # ! <------------------------------------------------------>
 
