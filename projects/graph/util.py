@@ -25,8 +25,6 @@ class Queue():
         else:
             return None
 
-#  TODO Need to optimize this for me.
-
 
 class Stack():
     def __init__(self):

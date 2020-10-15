@@ -49,6 +49,8 @@ class Graph:
     def get_neighbors(self, vertex_id):
         return self.vertices[vertex_id]
 
+# ! <------------------------------------------------------>
+
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
@@ -70,6 +72,8 @@ class Graph:
                 for neighbor in self.get_neighbors(curr_vert):
                     que.enqueue(neighbor)
 
+# ! <------------------------------------------------------>
+
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
@@ -89,6 +93,8 @@ class Graph:
                 for neighbor in self.get_neighbors(curr_vert):
                     dftStack.push(neighbor)
 
+ # ! <------------------------------------------------------>
+
     def dft_recursive(self, starting_vertex):
         """
         Print each vertex in depth-first order
@@ -98,6 +104,10 @@ class Graph:
         """
         pass  # TODO
 
+
+# ! <------------------------------------------------------>
+
+
     def bfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing the shortest path from
@@ -106,51 +116,52 @@ class Graph:
         """
         # Create an empty queue and Add a PATH TO starting vertex
 
-        que = Queue()
+        path = Queue()
         # I.e add array [1] to the queue
-        path = []
-        que.enqueue(starting_vertex)
-        que.enqueue(path)
-        print(path, "path")
-        print(que, "que")
+
+        # que.enqueue(starting_vertex)
+        path.enqueue([starting_vertex])
+        # print(path, "path")
+        print(path, "que")
         # create visited set (its empty for now)
         visited = set()
         # while queue is not empty:
-        curr_path = que.dequeue()
-        print(curr_path, "CP")
-        # while len(que) > 0:
-        #     # dequeue the current PATH from the queue
-        #     curr_path = que.dequeue()
+        # curr_path = que.dequeue()
+        # print(curr_path, "CP")
+        while len(path) > 0:
+            # dequeue the current PATH from the queue
+            curr_path = path.dequeue()
+            print("Current_path, in while loop: \n", curr_path)
+            # get the current vertex to analyze from the path
+            curr_vert = curr_path[-1]
+            # use the vertex at the END of the path array
+            print("Current_Vert, in while loop: \n", curr_vert)
+           # CHECK IF CURRENT VERTEX IS THE TARGET VERTEX
+            if curr_vert == destination_vertex:
+                # we found our vertex, and the path to it
+                print(curr_vert, "if found should be 6")
+                print(path, "found 6 print path")
+                return curr_path
+                # return the PATH
 
-        #     # get the current vertex to analyze from the path
-        #     curr_vert = curr_path[-1]
-        #     # use the vertex at the END of the path array
+            if curr_vert not in visited:
+                # add vertex to visited list
+                visited.add(curr_vert)
+                print("Visted : \n", visited)
+                for neighbor in self.get_neighbors(curr_vert):
+                    # Add the path to that neighbor, to the queue
 
-        #     # if vertex not visited:
-        #     if curr_vert not in visited:
-        #         # add vertex to visited list
-        #         visited.add(curr_vert)
+                    path.enqueue(curr_path + [neighbor])
 
-        #     # CHECK IF CURRENT VERTEX IS THE TARGET VERTEX
-        #         if curr_vert is destination_vertex:
-        #             # we found our vertex, and the path to it
-        #             return path
-        #             # return the PATH
+                    print("new_path, after copying old path : \n", curr_path)
 
-        #         else:
-        #             # for each neighbor of current vertex
-        #             if curr_vert not in visited:
+            print("Que when done with while loop : \n", path)
 
-        #                 for neighbor in self.get_neighbors(curr_vert):
-        #                     # Add the path to that neighbor, to the queue
-        #                     path.append(neighbor)
-        #                     # COPY THE CURRENT PATH
-        #                     new_path = path
-        #                     # add neighbor to new path
-        #                     new_path.append(neighbor)
-        #                     # add the whole path to the Queue
-        #                     que.enqueue(new_path)
+        # print(visited)
+        # print(path)
         # print(que)
+
+    # ! <------------------------------------------------------>
 
     def dfs(self, starting_vertex, destination_vertex):
         """
@@ -159,6 +170,8 @@ class Graph:
         depth-first order.
         """
         pass  # TODO
+
+    # ! <------------------------------------------------------>
 
     def dfs_recursive(self, starting_vertex, destination_vertex):
         """
@@ -169,6 +182,9 @@ class Graph:
         This should be done using recursion.
         """
         pass
+
+    # ! <------------------------------------------------------>
+    # ! <------------------------------------------------------>
 
 
 if __name__ == '__main__':
@@ -213,7 +229,7 @@ if __name__ == '__main__':
         1, 2, 4, 3, 7, 6, 5
         1, 2, 4, 3, 7, 5, 6
     '''
-    print(graph.bft(1))
+    # print(graph.bft(1))
 
     '''
     Valid DFT paths:
@@ -222,7 +238,7 @@ if __name__ == '__main__':
         1, 2, 4, 7, 6, 3, 5
         1, 2, 4, 6, 3, 5, 7
     '''
-    print(graph.dft(1))
+    # print(graph.dft(1))
     graph.dft_recursive(1)
 
     '''
