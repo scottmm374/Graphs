@@ -6,7 +6,7 @@ class Queue():
         self.size = 0
 
     def __str__(self):
-        return f'{self.queue} : QUE'
+        return f'{self.queue}'
 
     def __len__(self):
         return len(self.queue)

@@ -3,32 +3,6 @@ Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
 
-# for testing in python preview
-# class Queue():
-#     def __init__(self):
-#         self.queue = []
-#         self.size = 0
-
-# def __str__(self):
-#     return f'{self.queue} : QUE'
-
-# def __len__(self):
-#     return len(self.queue)
-
-# def enqueue(self, value):
-#     self.queue.append(value)
-#     self.size += 1
-#     return value
-
-# def dequeue(self):
-#     if self.size >= 1:
-#         value = self.queue.pop(0)
-#         self.size -= 1
-#         return value
-
-#     else:
-#         return None
-
 
 class Graph:
 
@@ -48,8 +22,6 @@ class Graph:
 
     def get_neighbors(self, vertex_id):
         return self.vertices[vertex_id]
-
-# ! <------------------------------------------------------>
 
     def bft(self, starting_vertex):
         """
@@ -72,8 +44,6 @@ class Graph:
                 for neighbor in self.get_neighbors(curr_vert):
                     que.enqueue(neighbor)
 
-# ! <------------------------------------------------------>
-
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
@@ -93,8 +63,6 @@ class Graph:
                 for neighbor in self.get_neighbors(curr_vert):
                     dftStack.push(neighbor)
 
- # ! <------------------------------------------------------>
-
     def dft_recursive(self, starting_vertex, visited=set()):
         """
         Print each vertex in depth-first order
@@ -109,9 +77,6 @@ class Graph:
         for neighbor in self.get_neighbors(starting_vertex):
             visited.add(starting_vertex)
             self.dft_recursive(neighbor, visited)
-
-
-# ! <------------------------------------------------------>
 
     def bfs(self, starting_vertex, destination_vertex):
         """
@@ -144,8 +109,6 @@ class Graph:
 
             # print("Que when done with while loop : \n", path)
 
-    # ! <------------------------------------------------------>
-
     def dfs(self, starting_vertex, destination_vertex):
         """
         Return a list containing a path from
@@ -175,8 +138,6 @@ class Graph:
                     # Add the path to that neighbor, to the queue
                     path.push(curr_path + [neighbor])
 
-    # ! <------------------------------------------------------>
-
     def dfs_recursive(self, starting_vertex, destination_vertex):
         """
         Return a list containing a path from
@@ -186,9 +147,6 @@ class Graph:
         This should be done using recursion.
         """
         pass
-
-    # ! <------------------------------------------------------>
-    # ! <------------------------------------------------------>
 
 
 if __name__ == '__main__':
