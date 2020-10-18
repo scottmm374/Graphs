@@ -19,25 +19,27 @@ class Graph:
 
     def add_vertices(self, ancestor_list):
         for vert in range(len(ancestor_list)):
+            # self.vertices[ancestor_list[vert][0]]
             self.vertices[ancestor_list[vert][0]] = set()
+
             if ancestor_list[vert][1] not in self.vertices:
                 self.vertices[ancestor_list[vert][1]] = set()
-
-                # value = ancestor_list[0][1]
-                # self.vertices[value]
 
         print(self.vertices)
 
         # def add_vertex(self, ancestor_list):
         #     self.vertices[ancestor_list[0]]
 
-    # def add_edge(self, ancestor_list):
-    #     for x in range(len(ancestor_list)):
-    #         self.vertices[ancestor_list[x][1]] = set
-
-    #     else:
-    #         print("Vertex not found")
-
+    def add_edge(self, ancestor_list):
+        for edge in range(len(ancestor_list)):
+            key = ancestor_list[edge][0]
+            value = ancestor_list[edge][1]
+            self.vertices[key].add(value)
+            print(ancestor_list[edge], "prints whole tuple set")
+            print(ancestor_list[edge][0], "should be vert")
+            print(ancestor_list[edge][1], "should be edge")
+            # self.vertices[edge].add([ancestor_list[edge][1]])
+        print(self.vertices, "edges added?")
         # def get_neighbors(self, vertex_id):
         #     return self.vertices[vertex_id]
 
@@ -77,9 +79,7 @@ graph.add_vertices(test_ancestors)
 # graph.add_vertex(9)
 # graph.add_vertex(10)
 # graph.add_vertex(11)
-# graph.add_edge(6, 3)
-# graph.add_edge(6, 5)
-# graph.add_edge(7, 5)
+graph.add_edge(test_ancestors)
 # graph.add_edge(9, 8)
 # graph.add_edge(3, 2)
 # graph.add_edge(3, 1)
