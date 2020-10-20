@@ -41,6 +41,7 @@ def earliest_ancestor(ancestors, starting_node):
 
                 max_path = len(curr_path)
                 curr_earliest = curr_vert
+
         # checking ancestors(neighbors)
             for ancestor in adj_list[curr_vert]:
                 new_path = list(curr_path)
