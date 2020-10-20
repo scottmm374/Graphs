@@ -4,10 +4,29 @@ test_ancestors = [(1, 3), (2, 3), (3, 6), (5, 6), (5, 7),
                   (4, 5), (4, 8), (8, 9), (11, 8), (10, 1)]
 
 
-def create_list(ancestor_list):
+# def create_list(ancestor_list):
+#     adj_list = {}
+
+#     for vert in ancestor_list:
+
+#         if vert[0] not in adj_list:
+#             adj_list[vert[0]] = set()
+#         # adding the vertices that did not have ancestors(edges)
+#         if vert[1] not in adj_list:
+#             adj_list[vert[1]] = set()
+
+#         # add edges between verts
+#         adj_list[vert[1]].add(vert[0])
+
+#     # print(adj_list)
+#     return adj_list
+
+
+def earliest_ancestor(ancestors, starting_node):
+
     adj_list = {}
 
-    for vert in ancestor_list:
+    for vert in ancestors:
 
         if vert[0] not in adj_list:
             adj_list[vert[0]] = set()
@@ -17,12 +36,6 @@ def create_list(ancestor_list):
 
         # add edges between verts
         adj_list[vert[1]].add(vert[0])
-
-    # print(adj_list)
-    return adj_list
-
-
-def earliest_ancestor(ancestors, starting_node):
     search_ancestors = [[starting_node]]
     visited = set()
 
@@ -41,7 +54,7 @@ def earliest_ancestor(ancestors, starting_node):
                 max_path = len(curr_path)
                 curr_earliest = curr_vert
 
-            for ancestor in ancestors[curr_vert]:
+            for ancestor in adj_list[curr_vert]:
                 new_path = list(curr_path)
                 new_path.append(ancestor)
                 search_ancestors.append(new_path)
@@ -56,14 +69,14 @@ def earliest_ancestor(ancestors, starting_node):
     # print(search, "stack in while")
 
 
-earliest_ancestor(create_list(test_ancestors), 1)  # 10)
-# earliest_ancestor(test_ancestors, 2)  # -1)
-# earliest_ancestor(test_ancestors, 3)  # 10)
-# earliest_ancestor(test_ancestors, 4)  # -1)
-# earliest_ancestor(test_ancestors, 5)  # 4)
-# earliest_ancestor(test_ancestors, 6)  # 10)
-# earliest_ancestor(test_ancestors, 7)  # 4)
-# earliest_ancestor(test_ancestors, 8)  # 4)
-# earliest_ancestor(test_ancestors, 9)  # 4)
-# earliest_ancestor(test_ancestors, 10)  # -1)
-# earliest_ancestor(test_ancestors, 11)  # -1)
+# earliest_ancestor(create_list(test_ancestors), 1)  # 10)
+earliest_ancestor(test_ancestors, 2)  # -1)
+earliest_ancestor(test_ancestors, 3)  # 10)
+earliest_ancestor(test_ancestors, 4)  # -1)
+earliest_ancestor(test_ancestors, 5)  # 4)
+earliest_ancestor(test_ancestors, 6)  # 10)
+earliest_ancestor(test_ancestors, 7)  # 4)
+earliest_ancestor(test_ancestors, 8)  # 4)
+earliest_ancestor(test_ancestors, 9)  # 4)
+earliest_ancestor(test_ancestors, 10)  # -1)
+earliest_ancestor(test_ancestors, 11)  # -1)
