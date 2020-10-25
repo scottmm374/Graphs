@@ -19,7 +19,7 @@ def earliest_ancestor(ancestors, starting_node):
 
         # add edges
         adj_list[vert[1]].add(vert[0])
-
+    print(adj_list, "adj list")
 #  END creating lookup table
 
 # Logic of search
@@ -33,7 +33,8 @@ def earliest_ancestor(ancestors, starting_node):
     while len(search_ancestors) > 0:
         curr_path = search_ancestors.pop(0)
         curr_vert = curr_path[-1]
-
+        print(curr_path, "curr_path")
+        print(curr_vert, "curr_vert")
         if curr_vert not in visited:
             visited.add(curr_vert)
 
@@ -47,18 +48,21 @@ def earliest_ancestor(ancestors, starting_node):
                 new_path = list(curr_path)
                 new_path.append(ancestor)
                 search_ancestors.append(new_path)
+            print(search_ancestors, "search_ancestors")
 
-    print(curr_earliest)
+    print(visited, "visited")
+
+    print(curr_earliest, "current_earliest")
     return curr_earliest
 
 
-earliest_ancestor(test_ancestors, 2)  # -1)
-earliest_ancestor(test_ancestors, 3)  # 10)
-earliest_ancestor(test_ancestors, 4)  # -1)
-earliest_ancestor(test_ancestors, 5)  # 4)
+# earliest_ancestor(test_ancestors, 2)  # -1)
+# earliest_ancestor(test_ancestors, 3)  # 10)
+# earliest_ancestor(test_ancestors, 4)  # -1)
+# earliest_ancestor(test_ancestors, 5)  # 4)
 earliest_ancestor(test_ancestors, 6)  # 10)
-earliest_ancestor(test_ancestors, 7)  # 4)
-earliest_ancestor(test_ancestors, 8)  # 4)
-earliest_ancestor(test_ancestors, 9)  # 4)
-earliest_ancestor(test_ancestors, 10)  # -1)
-earliest_ancestor(test_ancestors, 11)  # -1)
+# earliest_ancestor(test_ancestors, 7)  # 4)
+# earliest_ancestor(test_ancestors, 8)  # 4)
+# earliest_ancestor(test_ancestors, 9)  # 4)
+# earliest_ancestor(test_ancestors, 10)  # -1)
+# earliest_ancestor(test_ancestors, 11)  # -1)
